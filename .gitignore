@@ -1,0 +1,21 @@
+# Build directories
+build/
+cmake-build-*/
+
+# Generated compiler output
+*.o
+*.ll
+*.out
+
+# Generated C codegen output
+tests/*.c
+
+# Compiled test binaries
+tests/factorial
+tests/features
+
+# IDE
+.idea/
+
+# OS
+.DS_Store
