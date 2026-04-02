@@ -1,0 +1,12 @@
+fn factorial(n: int) -> int {
+    match n {
+        0 => 1,
+        _ => n * factorial(n - 1),
+    }
+}
+
+fn main() -> int {
+    let result = factorial(5);
+    print(result);
+    return 0;
+}

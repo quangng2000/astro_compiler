@@ -1,0 +1,3 @@
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/astro_compiler.dir
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/edit_cache.dir
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/rebuild_cache.dir
