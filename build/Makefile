@@ -124,6 +124,71 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named intrinsics_gen
+
+# Build rule for target.
+intrinsics_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 intrinsics_gen
+.PHONY : intrinsics_gen
+
+# fast build rule for target.
+intrinsics_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/intrinsics_gen.dir/build.make CMakeFiles/intrinsics_gen.dir/build
+.PHONY : intrinsics_gen/fast
+
+#=============================================================================
+# Target rules for targets named vt_gen
+
+# Build rule for target.
+vt_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vt_gen
+.PHONY : vt_gen
+
+# fast build rule for target.
+vt_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vt_gen.dir/build.make CMakeFiles/vt_gen.dir/build
+.PHONY : vt_gen/fast
+
+#=============================================================================
+# Target rules for targets named omp_gen
+
+# Build rule for target.
+omp_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 omp_gen
+.PHONY : omp_gen
+
+# fast build rule for target.
+omp_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/omp_gen.dir/build.make CMakeFiles/omp_gen.dir/build
+.PHONY : omp_gen/fast
+
+#=============================================================================
+# Target rules for targets named acc_gen
+
+# Build rule for target.
+acc_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 acc_gen
+.PHONY : acc_gen
+
+# fast build rule for target.
+acc_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/acc_gen.dir/build.make CMakeFiles/acc_gen.dir/build
+.PHONY : acc_gen/fast
+
+#=============================================================================
+# Target rules for targets named target_parser_gen
+
+# Build rule for target.
+target_parser_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 target_parser_gen
+.PHONY : target_parser_gen
+
+# fast build rule for target.
+target_parser_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/target_parser_gen.dir/build.make CMakeFiles/target_parser_gen.dir/build
+.PHONY : target_parser_gen/fast
+
+#=============================================================================
 # Target rules for targets named astro_compiler
 
 # Build rule for target.
@@ -207,6 +272,78 @@ src/codegen/codegen_stmt.s: src/codegen/codegen_stmt.cpp.s
 src/codegen/codegen_stmt.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/codegen_stmt.cpp.s
 .PHONY : src/codegen/codegen_stmt.cpp.s
+
+src/codegen/llvm_codegen.o: src/codegen/llvm_codegen.cpp.o
+.PHONY : src/codegen/llvm_codegen.o
+
+# target to build an object file
+src/codegen/llvm_codegen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o
+.PHONY : src/codegen/llvm_codegen.cpp.o
+
+src/codegen/llvm_codegen.i: src/codegen/llvm_codegen.cpp.i
+.PHONY : src/codegen/llvm_codegen.i
+
+# target to preprocess a source file
+src/codegen/llvm_codegen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.i
+.PHONY : src/codegen/llvm_codegen.cpp.i
+
+src/codegen/llvm_codegen.s: src/codegen/llvm_codegen.cpp.s
+.PHONY : src/codegen/llvm_codegen.s
+
+# target to generate assembly for a file
+src/codegen/llvm_codegen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.s
+.PHONY : src/codegen/llvm_codegen.cpp.s
+
+src/codegen/llvm_codegen_emit.o: src/codegen/llvm_codegen_emit.cpp.o
+.PHONY : src/codegen/llvm_codegen_emit.o
+
+# target to build an object file
+src/codegen/llvm_codegen_emit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o
+.PHONY : src/codegen/llvm_codegen_emit.cpp.o
+
+src/codegen/llvm_codegen_emit.i: src/codegen/llvm_codegen_emit.cpp.i
+.PHONY : src/codegen/llvm_codegen_emit.i
+
+# target to preprocess a source file
+src/codegen/llvm_codegen_emit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.i
+.PHONY : src/codegen/llvm_codegen_emit.cpp.i
+
+src/codegen/llvm_codegen_emit.s: src/codegen/llvm_codegen_emit.cpp.s
+.PHONY : src/codegen/llvm_codegen_emit.s
+
+# target to generate assembly for a file
+src/codegen/llvm_codegen_emit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.s
+.PHONY : src/codegen/llvm_codegen_emit.cpp.s
+
+src/codegen/llvm_codegen_expr.o: src/codegen/llvm_codegen_expr.cpp.o
+.PHONY : src/codegen/llvm_codegen_expr.o
+
+# target to build an object file
+src/codegen/llvm_codegen_expr.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o
+.PHONY : src/codegen/llvm_codegen_expr.cpp.o
+
+src/codegen/llvm_codegen_expr.i: src/codegen/llvm_codegen_expr.cpp.i
+.PHONY : src/codegen/llvm_codegen_expr.i
+
+# target to preprocess a source file
+src/codegen/llvm_codegen_expr.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.i
+.PHONY : src/codegen/llvm_codegen_expr.cpp.i
+
+src/codegen/llvm_codegen_expr.s: src/codegen/llvm_codegen_expr.cpp.s
+.PHONY : src/codegen/llvm_codegen_expr.s
+
+# target to generate assembly for a file
+src/codegen/llvm_codegen_expr.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/astro_compiler.dir/build.make CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.s
+.PHONY : src/codegen/llvm_codegen_expr.cpp.s
 
 src/lexer/lexer.o: src/lexer/lexer.cpp.o
 .PHONY : src/lexer/lexer.o
@@ -361,6 +498,11 @@ help:
 	@echo "... codegen"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... acc_gen"
+	@echo "... intrinsics_gen"
+	@echo "... omp_gen"
+	@echo "... target_parser_gen"
+	@echo "... vt_gen"
 	@echo "... astro_compiler"
 	@echo "... main.o"
 	@echo "... main.i"
@@ -371,6 +513,15 @@ help:
 	@echo "... src/codegen/codegen_stmt.o"
 	@echo "... src/codegen/codegen_stmt.i"
 	@echo "... src/codegen/codegen_stmt.s"
+	@echo "... src/codegen/llvm_codegen.o"
+	@echo "... src/codegen/llvm_codegen.i"
+	@echo "... src/codegen/llvm_codegen.s"
+	@echo "... src/codegen/llvm_codegen_emit.o"
+	@echo "... src/codegen/llvm_codegen_emit.i"
+	@echo "... src/codegen/llvm_codegen_emit.s"
+	@echo "... src/codegen/llvm_codegen_expr.o"
+	@echo "... src/codegen/llvm_codegen_expr.i"
+	@echo "... src/codegen/llvm_codegen_expr.s"
 	@echo "... src/lexer/lexer.o"
 	@echo "... src/lexer/lexer.i"
 	@echo "... src/lexer/lexer.s"

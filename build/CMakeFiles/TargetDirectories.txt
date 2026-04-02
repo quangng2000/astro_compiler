@@ -1,3 +1,8 @@
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/intrinsics_gen.dir
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/vt_gen.dir
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/omp_gen.dir
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/acc_gen.dir
+/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/target_parser_gen.dir
 /Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/astro_compiler.dir
 /Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/edit_cache.dir
 /Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles/rebuild_cache.dir

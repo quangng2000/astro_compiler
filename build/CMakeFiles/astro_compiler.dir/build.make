@@ -198,6 +198,48 @@ CMakeFiles/astro_compiler.dir/src/codegen/codegen_expr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/astro_compiler.dir/src/codegen/codegen_expr.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/codegen_expr.cpp -o CMakeFiles/astro_compiler.dir/src/codegen/codegen_expr.cpp.s
 
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o: CMakeFiles/astro_compiler.dir/flags.make
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o: /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen.cpp
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o: CMakeFiles/astro_compiler.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o -MF CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o.d -o CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o -c /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen.cpp
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen.cpp > CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.i
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen.cpp -o CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.s
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o: CMakeFiles/astro_compiler.dir/flags.make
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o: /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_expr.cpp
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o: CMakeFiles/astro_compiler.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o -MF CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o.d -o CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o -c /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_expr.cpp
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_expr.cpp > CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.i
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_expr.cpp -o CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.s
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o: CMakeFiles/astro_compiler.dir/flags.make
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o: /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_emit.cpp
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o: CMakeFiles/astro_compiler.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o -MF CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o.d -o CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o -c /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_emit.cpp
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_emit.cpp > CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.i
+
+CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/quangnguyen/CLionProjects/astro-compiler/src/codegen/llvm_codegen_emit.cpp -o CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.s
+
 # Object files for target astro_compiler
 astro_compiler_OBJECTS = \
 "CMakeFiles/astro_compiler.dir/main.cpp.o" \
@@ -208,7 +250,10 @@ astro_compiler_OBJECTS = \
 "CMakeFiles/astro_compiler.dir/src/parser/parser_helpers.cpp.o" \
 "CMakeFiles/astro_compiler.dir/src/typechecker/typechecker.cpp.o" \
 "CMakeFiles/astro_compiler.dir/src/codegen/codegen_stmt.cpp.o" \
-"CMakeFiles/astro_compiler.dir/src/codegen/codegen_expr.cpp.o"
+"CMakeFiles/astro_compiler.dir/src/codegen/codegen_expr.cpp.o" \
+"CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o" \
+"CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o" \
+"CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o"
 
 # External object files for target astro_compiler
 astro_compiler_EXTERNAL_OBJECTS =
@@ -222,9 +267,75 @@ astro_compiler: CMakeFiles/astro_compiler.dir/src/parser/parser_helpers.cpp.o
 astro_compiler: CMakeFiles/astro_compiler.dir/src/typechecker/typechecker.cpp.o
 astro_compiler: CMakeFiles/astro_compiler.dir/src/codegen/codegen_stmt.cpp.o
 astro_compiler: CMakeFiles/astro_compiler.dir/src/codegen/codegen_expr.cpp.o
+astro_compiler: CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen.cpp.o
+astro_compiler: CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_expr.cpp.o
+astro_compiler: CMakeFiles/astro_compiler.dir/src/codegen/llvm_codegen_emit.cpp.o
 astro_compiler: CMakeFiles/astro_compiler.dir/build.make
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMCore.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMSupport.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMPasses.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAArch64CodeGen.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAArch64AsmParser.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAArch64Desc.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAArch64Disassembler.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAArch64Info.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAArch64Utils.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMCoroutines.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMHipStdPar.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMipo.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMFrontendOpenMP.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMFrontendOffloading.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMObjectYAML.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMFrontendAtomic.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMFrontendDirective.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMLinker.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMIRPrinter.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMInstrumentation.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMCFGuard.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMGlobalISel.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMVectorize.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMSandboxIR.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAsmPrinter.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMSelectionDAG.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMCodeGen.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMObjCARCOpts.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMScalarOpts.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAggressiveInstCombine.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMInstCombine.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMCGData.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMBitWriter.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMTarget.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMTransformUtils.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAnalysis.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMFrontendHLSL.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMProfileData.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMSymbolize.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDebugInfoGSYM.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDebugInfoDWARF.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDebugInfoPDB.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMObject.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMIRReader.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMBitReader.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMAsmParser.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMRemarks.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMBitstreamReader.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMTextAPI.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDebugInfoCodeView.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDebugInfoMSF.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDebugInfoBTF.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMMCParser.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMCodeGenTypes.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMMCDisassembler.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMMC.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDebugInfoDWARFLowLevel.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMBinaryFormat.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMTargetParser.a
+astro_compiler: /opt/homebrew/Cellar/llvm/22.1.2/lib/libLLVMDemangle.a
+astro_compiler: /opt/homebrew/lib/libz3.dylib
+astro_compiler: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libz.tbd
+astro_compiler: /opt/homebrew/lib/libzstd.dylib
 astro_compiler: CMakeFiles/astro_compiler.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable astro_compiler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/quangnguyen/CLionProjects/astro-compiler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable astro_compiler"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/astro_compiler.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
