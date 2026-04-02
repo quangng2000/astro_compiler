@@ -1,6 +1,9 @@
 #include "codegen.h"
 
-CodeGen::CodeGen(TypeMap type_map) : type_map_(std::move(type_map)) {}
+CodeGen::CodeGen(TypeCheckResult result)
+    : type_map_(std::move(result.type_map))
+    , struct_names_(std::move(result.struct_names))
+    , registry_(std::move(result.registry)) {}
 
 std::string CodeGen::generate(const Program& program) {
     emit_line("#include <stdio.h>");
@@ -8,13 +11,15 @@ std::string CodeGen::generate(const Program& program) {
     emit_line("#include <stdbool.h>");
     emit_line("");
 
-    // Forward declarations
+    for (auto& s : program.structs) emit_struct_def(s);
+    for (auto& impl : program.impl_blocks) emit_impl_methods(impl);
+
     for (auto& fn : program.functions) {
-        auto ret = fn.name == "main" ? "int" : c_type(fn.return_type);
+        auto ret = fn.name == "main" ? "int" : c_type_ref(fn.return_type);
         emit(ret + " " + fn.name + "(");
         for (size_t i = 0; i < fn.params.size(); ++i) {
             if (i > 0) emit(", ");
-            emit(c_type(fn.params[i].type) + " " + fn.params[i].name);
+            emit(c_type_ref(fn.params[i].type) + " " + fn.params[i].name);
         }
         emit_line(");");
     }
@@ -25,11 +30,11 @@ std::string CodeGen::generate(const Program& program) {
 }
 
 void CodeGen::emit_function(const FnDecl& fn) {
-    auto ret = fn.name == "main" ? "int" : c_type(fn.return_type);
+    auto ret = fn.name == "main" ? "int" : c_type_ref(fn.return_type);
     emit(ret + " " + fn.name + "(");
     for (size_t i = 0; i < fn.params.size(); ++i) {
         if (i > 0) emit(", ");
-        emit(c_type(fn.params[i].type) + " " + fn.params[i].name);
+        emit(c_type_ref(fn.params[i].type) + " " + fn.params[i].name);
     }
     emit_line(") {");
     indent();
@@ -60,8 +65,13 @@ void CodeGen::emit_stmt(const Stmt& stmt) {
 
 void CodeGen::emit_let(const LetStmt& stmt) {
     auto type = type_of(*stmt.initializer);
+    std::string type_str = c_type(type);
+    if (type == AstType::Struct) {
+        auto sn = struct_name_of(*stmt.initializer);
+        if (!sn.empty()) type_str = sn;
+    }
     emit(std::string(indent_level_ * 4, ' '));
-    emit("const " + c_type(type) + " " + stmt.name + " = ");
+    emit("const " + type_str + " " + stmt.name + " = ");
     emit_expr(*stmt.initializer);
     emit_line(";");
 }
@@ -94,6 +104,16 @@ std::string CodeGen::c_type(AstType type) const {
         case AstType::Void: return "void";
         default: return "void";
     }
+}
+
+std::string CodeGen::c_type_ref(const TypeRef& ref) const {
+    if (ref.base == AstType::Struct) return ref.name;
+    return c_type(ref.base);
+}
+
+std::string CodeGen::struct_name_of(const Expr& expr) const {
+    auto it = struct_names_.find(static_cast<const void*>(&expr));
+    return it != struct_names_.end() ? it->second : "";
 }
 
 AstType CodeGen::type_of(const Expr& expr) const {

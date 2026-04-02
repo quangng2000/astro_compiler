@@ -31,6 +31,14 @@ llvm::Value* LLVMCodeGen::emit_expr(const Expr& expr) {
             return emit_match(node);
         else if constexpr (std::is_same_v<T, BlockExpr>)
             return emit_block(node);
+        else if constexpr (std::is_same_v<T, StructLitExpr>)
+            return emit_struct_lit(node);
+        else if constexpr (std::is_same_v<T, FieldAccessExpr>)
+            return emit_field_access(node);
+        else if constexpr (std::is_same_v<T, MethodCallExpr>)
+            return emit_method_call(node);
+        else if constexpr (std::is_same_v<T, StaticCallExpr>)
+            return emit_static_call(node);
         else return nullptr;
     }, expr);
 }

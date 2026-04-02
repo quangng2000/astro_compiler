@@ -9,6 +9,7 @@ enum class TokenKind {
 
     // Identifiers & keywords
     Ident, Fn, Let, If, Else, Match, Return, True, False,
+    Struct, Impl, Pub, SelfValue,
 
     // Type keywords
     IntType, FloatType, BoolType, StringType, VoidType,
@@ -24,7 +25,8 @@ enum class TokenKind {
 
     // Punctuation
     LParen, RParen, LBrace, RBrace,
-    Colon, Semicolon, Comma, Arrow, FatArrow, Assign,
+    Colon, ColonColon, Semicolon, Comma, Dot,
+    Arrow, FatArrow, Assign,
 
     // Special
     Underscore, Eof,
@@ -50,6 +52,10 @@ inline std::string token_kind_name(TokenKind kind) {
         case TokenKind::Return: return "return";
         case TokenKind::True: return "true";
         case TokenKind::False: return "false";
+        case TokenKind::Struct: return "struct";
+        case TokenKind::Impl: return "impl";
+        case TokenKind::Pub: return "pub";
+        case TokenKind::SelfValue: return "self";
         case TokenKind::IntType: return "int";
         case TokenKind::FloatType: return "float";
         case TokenKind::BoolType: return "bool";
@@ -74,7 +80,9 @@ inline std::string token_kind_name(TokenKind kind) {
         case TokenKind::LBrace: return "{";
         case TokenKind::RBrace: return "}";
         case TokenKind::Colon: return ":";
+        case TokenKind::ColonColon: return "::";
         case TokenKind::Semicolon: return ";";
+        case TokenKind::Dot: return ".";
         case TokenKind::Comma: return ",";
         case TokenKind::Arrow: return "->";
         case TokenKind::FatArrow: return "=>";

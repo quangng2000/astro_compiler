@@ -15,11 +15,16 @@ struct CallExpr;
 struct IfExpr;
 struct MatchExpr;
 struct BlockExpr;
+struct StructLitExpr;
+struct FieldAccessExpr;
+struct MethodCallExpr;
+struct StaticCallExpr;
 
 using Expr = std::variant<
     IntLitExpr, FloatLitExpr, BoolLitExpr, StringLitExpr,
     IdentExpr, BinaryExpr, UnaryExpr, CallExpr,
-    IfExpr, MatchExpr, BlockExpr
+    IfExpr, MatchExpr, BlockExpr,
+    StructLitExpr, FieldAccessExpr, MethodCallExpr, StaticCallExpr
 >;
 
 using ExprPtr = std::unique_ptr<Expr>;

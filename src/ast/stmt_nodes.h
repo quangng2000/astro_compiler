@@ -7,7 +7,7 @@
 
 struct LetStmt {
     std::string name;
-    AstType declared_type = AstType::Unknown;
+    TypeRef declared_type;
     ExprPtr initializer;
 };
 
@@ -21,16 +21,41 @@ struct ExprStmt {
 
 struct FnParam {
     std::string name;
-    AstType type;
+    TypeRef type;
 };
 
 struct FnDecl {
     std::string name;
     std::vector<FnParam> params;
-    AstType return_type = AstType::Void;
+    TypeRef return_type = {AstType::Void, ""};
     ExprPtr body;
+    bool is_pub = true;
+};
+
+struct StructField {
+    bool is_pub = false;
+    std::string name;
+    TypeRef type;
+};
+
+struct StructDecl {
+    std::string name;
+    std::vector<StructField> fields;
+};
+
+struct ImplMethod {
+    bool is_pub = false;
+    bool has_self = false;
+    FnDecl fn;
+};
+
+struct ImplBlock {
+    std::string target;
+    std::vector<ImplMethod> methods;
 };
 
 struct Program {
+    std::vector<StructDecl> structs;
+    std::vector<ImplBlock> impl_blocks;
     std::vector<FnDecl> functions;
 };

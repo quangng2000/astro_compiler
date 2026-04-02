@@ -7,49 +7,57 @@ Parser::Parser(std::vector<Token> tokens)
 Program Parser::parse() {
     Program program;
     while (!at_end()) {
-        program.functions.push_back(parse_function());
+        if (check(TokenKind::Struct)) {
+            program.structs.push_back(parse_struct());
+        } else if (check(TokenKind::Impl)) {
+            program.impl_blocks.push_back(parse_impl());
+        } else {
+            program.functions.push_back(parse_function());
+        }
     }
     return program;
 }
 
-FnDecl Parser::parse_function() {
+FnDecl Parser::parse_function(bool is_pub) {
     expect(TokenKind::Fn);
     auto name = expect(TokenKind::Ident).text;
     expect(TokenKind::LParen);
 
     std::vector<FnParam> params;
     while (!check(TokenKind::RParen)) {
-        auto pname = expect(TokenKind::Ident).text;
-        expect(TokenKind::Colon);
-        auto ptype = parse_type();
-        params.push_back({pname, ptype});
+        if (check(TokenKind::SelfValue)) {
+            advance();
+            params.push_back({"self", {AstType::Struct, ""}});
+        } else {
+            auto pname = expect(TokenKind::Ident).text;
+            expect(TokenKind::Colon);
+            params.push_back({pname, parse_type_ref()});
+        }
         if (!check(TokenKind::RParen)) expect(TokenKind::Comma);
     }
     expect(TokenKind::RParen);
 
-    AstType ret_type = AstType::Void;
+    TypeRef ret_type = {AstType::Void, ""};
     if (check(TokenKind::Arrow)) {
         advance();
-        ret_type = parse_type();
+        ret_type = parse_type_ref();
     }
 
     auto body = parse_block();
-    return {name, std::move(params), ret_type, std::move(body)};
+    return {name, std::move(params), ret_type, std::move(body), is_pub};
 }
 
-AstType Parser::parse_type() {
+TypeRef Parser::parse_type_ref() {
     auto tok = advance();
     auto t = token_to_type(tok.kind);
-    if (t == AstType::Unknown) {
-        error("expected type, got '" + tok.text + "'");
-    }
-    return t;
+    if (t != AstType::Unknown) return {t, ""};
+    if (tok.kind == TokenKind::Ident) return {AstType::Struct, tok.text};
+    error("expected type, got '" + tok.text + "'");
 }
 
 Stmt Parser::parse_statement() {
     if (check(TokenKind::Let)) return parse_let();
     if (check(TokenKind::Return)) return parse_return();
-
     auto expr = parse_expr();
     expect(TokenKind::Semicolon);
     return ExprStmt{std::move(expr)};
@@ -58,13 +66,11 @@ Stmt Parser::parse_statement() {
 LetStmt Parser::parse_let() {
     expect(TokenKind::Let);
     auto name = expect(TokenKind::Ident).text;
-
-    AstType type = AstType::Unknown;
+    TypeRef type = {AstType::Unknown, ""};
     if (check(TokenKind::Colon)) {
         advance();
-        type = parse_type();
+        type = parse_type_ref();
     }
-
     expect(TokenKind::Assign);
     auto init = parse_expr();
     expect(TokenKind::Semicolon);
@@ -73,17 +79,18 @@ LetStmt Parser::parse_let() {
 
 ReturnStmt Parser::parse_return() {
     expect(TokenKind::Return);
-    if (check(TokenKind::Semicolon)) {
-        advance();
-        return {nullptr};
-    }
+    if (check(TokenKind::Semicolon)) { advance(); return {nullptr}; }
     auto value = parse_expr();
     expect(TokenKind::Semicolon);
     return {std::move(value)};
 }
 
-// Utility methods
+// Utilities
 const Token& Parser::peek() const { return tokens_[pos_]; }
+
+const Token& Parser::peek_at(size_t offset) const {
+    return tokens_[pos_ + offset];
+}
 
 Token Parser::advance() { return tokens_[pos_++]; }
 

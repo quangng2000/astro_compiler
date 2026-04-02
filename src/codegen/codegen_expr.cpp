@@ -29,6 +29,14 @@ void CodeGen::emit_expr(const Expr& expr) {
             emit_match(node);
         else if constexpr (std::is_same_v<T, BlockExpr>)
             emit_block(node, false);
+        else if constexpr (std::is_same_v<T, StructLitExpr>)
+            emit_struct_lit(node);
+        else if constexpr (std::is_same_v<T, FieldAccessExpr>)
+            emit_field_access(node);
+        else if constexpr (std::is_same_v<T, MethodCallExpr>)
+            emit_method_call(node);
+        else if constexpr (std::is_same_v<T, StaticCallExpr>)
+            emit_static_call(node);
     }, expr);
 }
 

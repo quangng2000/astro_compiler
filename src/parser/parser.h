@@ -12,11 +12,15 @@ public:
 
 private:
     // Declarations & statements (parser_stmt.cpp)
-    FnDecl parse_function();
+    FnDecl parse_function(bool is_pub = true);
     Stmt parse_statement();
     LetStmt parse_let();
     ReturnStmt parse_return();
-    AstType parse_type();
+    TypeRef parse_type_ref();
+
+    // Struct/impl (parser_struct.cpp)
+    StructDecl parse_struct();
+    ImplBlock parse_impl();
 
     // Expressions (parser_expr.cpp)
     ExprPtr parse_expr();
@@ -27,8 +31,14 @@ private:
     ExprPtr parse_block();
     std::vector<ExprPtr> parse_arg_list();
 
+    // Postfix (parser_postfix.cpp)
+    ExprPtr parse_struct_literal(std::string name);
+    ExprPtr apply_postfix(ExprPtr left);
+    ExprPtr parse_static_call(std::string type_name);
+
     // Utilities
     const Token& peek() const;
+    const Token& peek_at(size_t offset) const;
     Token advance();
     Token expect(TokenKind kind);
     bool check(TokenKind kind) const;

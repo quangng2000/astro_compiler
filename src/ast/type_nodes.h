@@ -5,7 +5,14 @@
 #include <unordered_map>
 
 enum class AstType {
-    Int, Float, Bool, String, Void, Unknown
+    Int, Float, Bool, String, Void, Struct, Unknown
+};
+
+struct TypeRef {
+    AstType base = AstType::Unknown;
+    std::string name;
+
+    bool is_struct() const { return base == AstType::Struct; }
 };
 
 inline AstType token_to_type(TokenKind kind) {
@@ -27,6 +34,7 @@ inline std::string type_to_string(AstType t) {
         case AstType::Bool: return "bool";
         case AstType::String: return "string";
         case AstType::Void: return "void";
+        case AstType::Struct: return "struct";
         case AstType::Unknown: return "unknown";
     }
     return "unknown";

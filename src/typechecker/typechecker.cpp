@@ -1,33 +1,44 @@
 #include "typechecker.h"
 #include "common/error.h"
 
-TypeMap TypeChecker::check(const Program& program) {
-    // Register all function signatures first
+TypeCheckResult TypeChecker::check(const Program& program) {
+    register_structs(program);
+    register_impls(program);
+
+    globals_.define_fn("print", {{AstType::Unknown}, AstType::Void});
     for (auto& fn : program.functions) {
         FnSignature sig;
-        for (auto& p : fn.params) sig.param_types.push_back(p.type);
-        sig.return_type = fn.return_type;
+        for (auto& p : fn.params) sig.param_types.push_back(resolve_type(p.type));
+        sig.return_type = resolve_type(fn.return_type);
         globals_.define_fn(fn.name, sig);
     }
-    // Built-in: print accepts any single arg
-    globals_.define_fn("print", {{AstType::Unknown}, AstType::Void});
 
     for (auto& fn : program.functions) check_function(fn);
-    return std::move(type_map_);
+    for (auto& impl : program.impl_blocks) {
+        current_struct_ = impl.target;
+        for (auto& m : impl.methods) check_function(m.fn);
+        current_struct_ = "";
+    }
+    return {std::move(type_map_), std::move(struct_names_),
+            std::move(registry_)};
 }
 
 AstType TypeChecker::check_function(const FnDecl& fn) {
     TypeEnv local(&globals_);
     current_scope_ = &local;
-    current_return_type_ = fn.return_type;
-    for (auto& p : fn.params) local.define(p.name, p.type);
+    current_return_type_ = resolve_type(fn.return_type);
+    for (auto& p : fn.params) {
+        local.define(p.name, resolve_type(p.type));
+        if (p.type.is_struct())
+            var_struct_names_[p.name] = p.type.name;
+    }
     auto body_type = check_expr(*fn.body);
     current_scope_ = &globals_;
     return body_type;
 }
 
 AstType TypeChecker::check_expr(const Expr& expr) {
-    auto type = std::visit([this](auto& node) -> AstType {
+    auto type = std::visit([this, &expr](auto& node) -> AstType {
         using T = std::decay_t<decltype(node)>;
         if constexpr (std::is_same_v<T, IntLitExpr>) return AstType::Int;
         else if constexpr (std::is_same_v<T, FloatLitExpr>) return AstType::Float;
@@ -38,6 +49,12 @@ AstType TypeChecker::check_expr(const Expr& expr) {
             if (t == AstType::Unknown)
                 throw CompilerError("TypeCheck",
                     "undefined variable '" + node.name + "'");
+            if (t == AstType::Struct) {
+                auto vit = var_struct_names_.find(node.name);
+                if (vit != var_struct_names_.end())
+                    struct_names_[static_cast<const void*>(&expr)] =
+                        vit->second;
+            }
             return t;
         }
         else if constexpr (std::is_same_v<T, BinaryExpr>) {
@@ -62,7 +79,6 @@ AstType TypeChecker::check_expr(const Expr& expr) {
             if (!sig)
                 throw CompilerError("TypeCheck",
                     "undefined function '" + node.callee + "'");
-            // Check arg count (skip for print)
             if (node.callee != "print" &&
                 node.args.size() != sig->param_types.size())
                 throw CompilerError("TypeCheck",
@@ -88,55 +104,19 @@ AstType TypeChecker::check_expr(const Expr& expr) {
             }
             return arm_type;
         }
-        else if constexpr (std::is_same_v<T, BlockExpr>) {
+        else if constexpr (std::is_same_v<T, BlockExpr>)
             return check_block(node);
-        }
+        else if constexpr (std::is_same_v<T, StructLitExpr>)
+            return check_struct_lit(node);
+        else if constexpr (std::is_same_v<T, FieldAccessExpr>)
+            return check_field_access(node);
+        else if constexpr (std::is_same_v<T, MethodCallExpr>)
+            return check_method_call(node);
+        else if constexpr (std::is_same_v<T, StaticCallExpr>)
+            return check_static_call(node);
         else return AstType::Unknown;
     }, expr);
 
     record(expr, type);
     return type;
-}
-
-AstType TypeChecker::check_block(const BlockExpr& block) {
-    for (auto& stmt : block.statements) check_stmt(stmt);
-    if (block.tail_expr) return check_expr(*block.tail_expr);
-    return AstType::Void;
-}
-
-AstType TypeChecker::check_stmt(const Stmt& stmt) {
-    return std::visit([this](auto& node) -> AstType {
-        using T = std::decay_t<decltype(node)>;
-        if constexpr (std::is_same_v<T, LetStmt>) {
-            auto init_type = check_expr(*node.initializer);
-            auto decl_type = node.declared_type;
-            if (decl_type != AstType::Unknown)
-                expect_type(decl_type, init_type, "let binding");
-            else decl_type = init_type;
-            current_scope_->define(node.name, decl_type);
-            return AstType::Void;
-        }
-        else if constexpr (std::is_same_v<T, ReturnStmt>) {
-            if (node.value) check_expr(*node.value);
-            return AstType::Void;
-        }
-        else if constexpr (std::is_same_v<T, ExprStmt>) {
-            check_expr(*node.expr);
-            return AstType::Void;
-        }
-        else return AstType::Void;
-    }, stmt);
-}
-
-void TypeChecker::expect_type(AstType expected, AstType actual,
-                              const std::string& context) {
-    if (expected != actual) {
-        throw CompilerError("TypeCheck",
-            "type mismatch in " + context + ": expected " +
-            type_to_string(expected) + ", got " + type_to_string(actual));
-    }
-}
-
-void TypeChecker::record(const Expr& expr, AstType type) {
-    type_map_[static_cast<const void*>(&expr)] = type;
 }

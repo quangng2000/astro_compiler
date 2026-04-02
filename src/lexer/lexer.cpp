@@ -9,7 +9,9 @@ static const std::unordered_map<std::string, TokenKind> KEYWORDS = {
     {"true", TokenKind::True},     {"false", TokenKind::False},
     {"int", TokenKind::IntType},   {"float", TokenKind::FloatType},
     {"bool", TokenKind::BoolType}, {"string", TokenKind::StringType},
-    {"void", TokenKind::VoidType},
+    {"void", TokenKind::VoidType}, {"struct", TokenKind::Struct},
+    {"impl", TokenKind::Impl},     {"pub", TokenKind::Pub},
+    {"self", TokenKind::SelfValue},
 };
 
 Lexer::Lexer(std::string source) : source_(std::move(source)) {}

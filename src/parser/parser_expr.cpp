@@ -17,6 +17,9 @@ ExprPtr Parser::parse_expr_bp(int min_bp) {
         left = parse_primary();
     }
 
+    // Postfix dot access (highest precedence)
+    left = apply_postfix(std::move(left));
+
     // Infix operators
     while (is_infix_op(peek().kind)) {
         int lbp = infix_bp_left(peek().kind);
@@ -48,8 +51,15 @@ ExprPtr Parser::parse_primary() {
         case TokenKind::True: advance(); return make_expr<BoolLitExpr>(true);
         case TokenKind::False: advance(); return make_expr<BoolLitExpr>(false);
 
+        case TokenKind::SelfValue:
         case TokenKind::Ident: {
             auto name = advance().text;
+            if (check(TokenKind::ColonColon))
+                return parse_static_call(std::move(name));
+            if (check(TokenKind::LBrace) &&
+                peek_at(1).kind == TokenKind::Ident &&
+                peek_at(2).kind == TokenKind::Colon)
+                return parse_struct_literal(std::move(name));
             if (check(TokenKind::LParen)) {
                 auto args = parse_arg_list();
                 return make_expr<CallExpr>(std::move(name), std::move(args));

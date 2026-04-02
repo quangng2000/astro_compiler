@@ -1,10 +1,6 @@
 #include "lexer.h"
 #include "common/error.h"
 
-Token Lexer::make_token(TokenKind kind, const std::string& text) {
-    return {kind, text, {line_, col_}};
-}
-
 void Lexer::skip_whitespace_and_comments() {
     while (!at_end()) {
         char c = peek();
@@ -26,7 +22,13 @@ Token Lexer::read_punctuation() {
         case ')': return {TokenKind::RParen, ")", loc};
         case '{': return {TokenKind::LBrace, "{", loc};
         case '}': return {TokenKind::RBrace, "}", loc};
-        case ':': return {TokenKind::Colon, ":", loc};
+        case '.': return {TokenKind::Dot, ".", loc};
+        case ':':
+            if (!at_end() && peek() == ':') {
+                advance();
+                return {TokenKind::ColonColon, "::", loc};
+            }
+            return {TokenKind::Colon, ":", loc};
         case ';': return {TokenKind::Semicolon, ";", loc};
         case ',': return {TokenKind::Comma, ",", loc};
         case '+': return {TokenKind::Plus, "+", loc};
@@ -85,20 +87,3 @@ Token Lexer::read_punctuation() {
                         std::string(1, c) + "'", loc);
 }
 
-char Lexer::peek() const {
-    return at_end() ? '\0' : source_[pos_];
-}
-
-char Lexer::peek_next() const {
-    return (pos_ + 1 >= source_.size()) ? '\0' : source_[pos_ + 1];
-}
-
-char Lexer::advance() {
-    char c = source_[pos_++];
-    col_++;
-    return c;
-}
-
-bool Lexer::at_end() const {
-    return pos_ >= source_.size();
-}

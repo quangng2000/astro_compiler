@@ -1,0 +1,22 @@
+struct Point {
+    pub x: int,
+    pub y: int,
+    secret: int,
+}
+
+impl Point {
+    pub fn new(x: int, y: int) -> Point {
+        Point { x: x, y: y, secret: 42 }
+    }
+
+    pub fn sum(self) -> int {
+        self.x + self.y
+    }
+}
+
+fn main() -> int {
+    let p = Point::new(3, 4);
+    print(p.sum());
+    print(p.x);
+    return 0;
+}

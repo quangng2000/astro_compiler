@@ -16,15 +16,21 @@ add_executable(astro_compiler
     main.cpp
     src/lexer/lexer.cpp
     src/lexer/lexer_helpers.cpp
+    src/lexer/lexer_utils.cpp
     src/parser/parser_stmt.cpp
     src/parser/parser_expr.cpp
     src/parser/parser_helpers.cpp
+    src/parser/parser_struct.cpp
+    src/parser/parser_postfix.cpp
     src/typechecker/typechecker.cpp
+    src/typechecker/typechecker_struct.cpp
     src/codegen/codegen_stmt.cpp
     src/codegen/codegen_expr.cpp
+    src/codegen/codegen_struct.cpp
     src/codegen/llvm_codegen.cpp
     src/codegen/llvm_codegen_expr.cpp
     src/codegen/llvm_codegen_emit.cpp
+    src/codegen/llvm_codegen_struct.cpp
 )
 
 target_include_directories(astro_compiler PRIVATE src ${LLVM_INCLUDE_DIRS})
