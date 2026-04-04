@@ -1,3 +1,4 @@
+#include "common/arena.h"
 #include "common/error.h"
 #include "lexer/lexer.h"
 #include "parser/parser.h"
@@ -54,7 +55,8 @@ int main(int argc, char* argv[]) {
     try {
         auto source = read_file(input);
         auto tokens = Lexer(source).tokenize();
-        auto ast = Parser(std::move(tokens)).parse();
+        Arena arena;
+        auto ast = Parser(std::move(tokens), arena).parse();
         auto types = TypeChecker().check(ast);
         auto base = input.substr(0, input.rfind('.'));
 

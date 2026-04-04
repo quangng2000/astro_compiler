@@ -1,6 +1,5 @@
 #pragma once
 
-#include <memory>
 #include <variant>
 #include <vector>
 
@@ -27,15 +26,10 @@ using Expr = std::variant<
     StructLitExpr, FieldAccessExpr, MethodCallExpr, StaticCallExpr
 >;
 
-using ExprPtr = std::unique_ptr<Expr>;
+using ExprPtr = Expr*;
 
 struct LetStmt;
 struct ReturnStmt;
 struct ExprStmt;
 
 using Stmt = std::variant<LetStmt, ReturnStmt, ExprStmt>;
-
-template<typename T, typename... Args>
-ExprPtr make_expr(Args&&... args) {
-    return std::make_unique<Expr>(T{std::forward<Args>(args)...});
-}

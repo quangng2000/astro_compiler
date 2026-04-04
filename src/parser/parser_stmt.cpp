@@ -1,8 +1,8 @@
 #include "parser.h"
 #include "common/error.h"
 
-Parser::Parser(std::vector<Token> tokens)
-    : tokens_(std::move(tokens)) {}
+Parser::Parser(std::vector<Token> tokens, Arena& arena)
+    : arena_(arena), tokens_(std::move(tokens)) {}
 
 Program Parser::parse() {
     Program program;

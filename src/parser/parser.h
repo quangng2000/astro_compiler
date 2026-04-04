@@ -2,15 +2,21 @@
 
 #include "ast/expr_nodes.h"
 #include "ast/stmt_nodes.h"
+#include "common/arena.h"
 #include "common/token.h"
 #include <vector>
 
 class Parser {
 public:
-    explicit Parser(std::vector<Token> tokens);
+    Parser(std::vector<Token> tokens, Arena& arena);
     Program parse();
 
 private:
+    template<typename T, typename... Args>
+    ExprPtr make_expr(Args&&... args) {
+        return arena_.alloc<Expr>(T{std::forward<Args>(args)...});
+    }
+
     // Declarations & statements (parser_stmt.cpp)
     FnDecl parse_function(bool is_pub = true);
     Stmt parse_statement();
@@ -50,6 +56,7 @@ private:
     static int prefix_bp(TokenKind kind);
     static bool is_infix_op(TokenKind kind);
 
+    Arena& arena_;
     std::vector<Token> tokens_;
     size_t pos_ = 0;
 };
