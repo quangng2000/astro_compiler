@@ -41,7 +41,7 @@ AstType TypeChecker::check_struct_lit(const StructLitExpr& expr) {
 
 AstType TypeChecker::check_field_access(const FieldAccessExpr& expr) {
     check_expr(*expr.object);
-    auto it = struct_names_.find(static_cast<const void*>(expr.object.get()));
+    auto it = struct_names_.find(static_cast<const void*>(expr.object));
     if (it == struct_names_.end())
         throw CompilerError("TypeCheck", "field access on non-struct");
     auto* field = registry_.lookup_field(it->second, expr.field_name);
@@ -56,7 +56,7 @@ AstType TypeChecker::check_field_access(const FieldAccessExpr& expr) {
 
 AstType TypeChecker::check_method_call(const MethodCallExpr& expr) {
     check_expr(*expr.object);
-    auto it = struct_names_.find(static_cast<const void*>(expr.object.get()));
+    auto it = struct_names_.find(static_cast<const void*>(expr.object));
     if (it == struct_names_.end())
         throw CompilerError("TypeCheck", "method call on non-struct");
     auto* method = registry_.lookup_method(it->second, expr.method_name);
@@ -102,7 +102,7 @@ AstType TypeChecker::check_stmt(const Stmt& stmt) {
             current_scope_->define(node.name, decl_type);
             if (decl_type == AstType::Struct) {
                 auto it = struct_names_.find(
-                    static_cast<const void*>(node.initializer.get()));
+                    static_cast<const void*>(node.initializer));
                 if (it != struct_names_.end())
                     var_struct_names_[node.name] = it->second;
                 else if (node.declared_type.is_struct())
